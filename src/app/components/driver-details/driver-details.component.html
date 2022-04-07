@@ -1,0 +1,48 @@
+<p>driver-details works!</p>
+<div class="container-sm">
+  <div *ngIf="currentDriver.id" class="edit-form">
+    <h4>Driver</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name Of Driver</label>
+        <input type="text" class="form-control" id="name"
+               [(ngModel)]="currentDriver.name" name="name" />
+      </div>
+      <div class="form-group">
+        <label for="dob">Date Of Birth</label>
+        <input type="text" class="form-control" id="dob"
+               [(ngModel)]="currentDriver.dob" name="dob" />
+      </div>
+      <div class="form-group">
+        <label for="active">Active Driver</label>
+        <!-- <input type="checkbox" class="form-control" id="active"
+               [(ngModel)]="currentDriver.active" name="active" /> -->
+          <br>
+        <input id="active" type="checkbox" name="active" [(ngModel)]="currentDriver.active">
+      </div>
+      <div class="form-group">
+        <label for="category">Category Of Driver</label>
+        <br>
+        <p>Current Category: {{ currentDriver.category?.name }}</p>
+        <p>Change Category:</p>
+        <select [(ngModel)]="currentDriver.category">
+          <option *ngFor="let cat of categories" value="{{ cat.id }}">{{ cat.name }}</option>
+        </select>
+      </div>
+
+      <input type="hidden" [(ngModel)]="currentDriver.user" value="{{ currentUser }}" [ngModelOptions]="{standalone: true}">
+
+    </form>
+    <button class="badge badge-danger mr-2" (click)="deleteDriver()">
+      Delete
+    </button>
+    <button class="badge badge-succerss mb-2" (click)="updateDriver()">
+      Update
+    </button>
+  </div>
+  <div *ngIf="!currentDriver.id">
+    <br/>
+    <p>Cannot access this Driver...</p>
+  </div>
+</div>
+

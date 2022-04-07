@@ -1,0 +1,26 @@
+<p>add-shift-one-driver works!</p>
+<div class="container-sm">
+  <div *ngIf="currentShift.id" class="edit-form">
+    <h4>Shifts</h4>
+    <form>
+      <div class="form-group">
+        <label for="driverOneId">First Driver</label>
+        <br>
+        <select [(ngModel)]="driverOneId" name="driverOneId">
+          <option *ngFor="let driver of drivers | activeDriver" value="{{ driver.id }}" >
+            {{ driver.name }}
+          </option>
+        </select>
+      </div>
+    </form>
+    <br>
+    <button class="badge badge-succerss mb-2" (click)="updateShift()">
+      Add/Update
+    </button>
+  </div>
+  <div *ngIf="!currentShift.id">
+    <br/>
+    <p>Cannot access this Shift...</p>
+  </div>
+</div>
+

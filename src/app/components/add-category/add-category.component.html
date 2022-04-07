@@ -1,0 +1,14 @@
+<div class="container-sm">
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="name">Name Of Category</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="category.name" name="name"/>
+      </div>
+      <button (click)="saveCategory()" class="btn btn-success">Save Category</button>
+    </div>
+    <div *ngIf="submitted">
+      <h4>Category was saved successfully!</h4>
+    </div>
+  </div>
+</div>

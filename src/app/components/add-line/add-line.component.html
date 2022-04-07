@@ -1,0 +1,21 @@
+<p>add-line works!</p>
+<div class="container-sm">
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="name">Name Of Line</label>
+        <input type="text" class="form-control" id="name_of_line" [(ngModel)]="line.name_of_line" name="name_of_line"/>
+        <label for="name">Start Time Of Line</label>
+        <input type="time" class="form-control" id="start_time" [(ngModel)]="line.start_time" name="start_time"/>
+        <label for="name">End Time Of Line</label>
+        <input type="time" class="form-control" id="end_time" [(ngModel)]="line.end_time" name="end_time"/>
+        <input type="hidden" [(ngModel)]="line.user" value="{{ currentUser }}" [ngModelOptions]="{standalone: true}">
+      </div>
+      <button (click)="saveLine()" class="btn btn-success">Save Line</button>
+    </div>
+    <div *ngIf="submitted">
+      <h4>Line was saved successfully!</h4>
+    </div>
+  </div>
+</div>
+
