@@ -1,29 +1,45 @@
-<p>drivers-shifts-details works!</p>
+<br>
 <div class="container-sm">
   <div *ngIf="currentDriversShifts.id" class="edit-form">
-    <h4>Drivers Shift</h4>
-    <form>
+    <div *ngIf="validated">
+      <div *ngIf="!submitted">
+        <h4>Drivers Shift</h4>
+        <form>
+          <input type="hidden" [(ngModel)]="currentLine" value="{{ currentLine.id }}" [ngModelOptions]="{standalone: true}">
 
-      <input type="hidden" [(ngModel)]="currentLine" value="{{ currentLine.id }}" [ngModelOptions]="{standalone: true}">
+          <input type="hidden" [(ngModel)]="currentDriversShifts.user" value="{{ currentUser }}" [ngModelOptions]="{standalone: true}">
 
-      <input type="hidden" [(ngModel)]="currentDriver" value="{{ currentDriver.id }}" [ngModelOptions]="{standalone: true}">
+          <div class="form-group">
+            <label for="currentDriver.id">Driver</label>
+            <br>
+            <select [(ngModel)]="currentDriversShifts.driverId" name="currentDriversShifts.driverId">
+              <option *ngFor="let driver of drivers | activeDriver" [ngValue]="driver.id" >
+                {{ driver.name }}
+              </option>
+            </select>
+          </div>
 
-      <input type="hidden" [(ngModel)]="currentDriversShifts.user" value="{{ currentUser }}" [ngModelOptions]="{standalone: true}">
-
-      <div class="form-group">
-        <label for="category">Shift</label>
-        <br>
-        <p>Current Shift: {{ currentDriversShifts.shift }}</p>
-        <p>Change Shift:</p>
-        <select [(ngModel)]="currentDriversShifts.shift" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let shift of shifts" value="{{ shift }}">{{ shift }}</option>
-        </select>
+          <div class="form-group">
+            <label for="category">Shift</label>
+            <br>
+            <p>Current Shift: {{ currentDriversShifts.shift }}</p>
+            <p>Change Shift:</p>
+            <select [(ngModel)]="currentDriversShifts.shift" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let shift of shifts" value="{{ shift }}">{{ shift }}</option>
+            </select>
+          </div>
+        </form>
+        <button class="badge badge-succerss mb-2" (click)="changeShift()">
+          Change Shift
+        </button>
       </div>
-      <button class="badge badge-succerss mb-2" (click)="changeShift()">
-        Change Shift
-      </button>
-
-    </form>
+      <div *ngIf="submitted">
+        <h4>Shift was changed successfully!</h4>
+      </div>
+    </div>
+    <div *ngIf="!validated">
+      <h4>You cant have two Drivers on same shift! Please use option CHANGE_SHIFT!</h4>
+    </div>
   </div>
   <div *ngIf="!currentDriversShifts.id">
     <br/>

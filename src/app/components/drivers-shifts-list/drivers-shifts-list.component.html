@@ -1,51 +1,41 @@
-<p>drivers-shifts-list works!</p>
+<br>
 <div class="container-sm">
   <div class="list row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <h4>Drivers Shifts</h4>
 
       <br><br><br>
 
-      <ul class="list-group">
-        <li class="list-group-item"
-            *ngFor="let driveShift of driversShiftsList; let i = index"
-            [class.active] = "i == currentIndex"
-            (click) = "setActiveDriversShifts(driveShift, i)"
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">LINE</th>
+            <th scope="col">DRIVER</th>
+            <th scope="col">SHIFT</th>
+            <th scope="col">VIEW</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr  *ngFor="let driveShift of driversShiftsList; let i = index"
+               [class.active] = "i == currentIndex"
+               (click) = "setActiveDriversShifts(driveShift, i)"
           >
-          {{ driveShift.id }}
-          {{ driveShift.publiclinesId! | shiftLine  }}
-          {{ driveShift.driverId }}
-          {{ driveShift.shift }}
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <div *ngIf="currentDriversShifts.id">
-        <h4>Shift</h4>
-        <div>
-          <label><strong>Line:</strong></label>
-          {{ currentDriversShifts.publiclinesId }}
-        </div>
-        <div>
-          <label><strong>Driver:</strong></label>
-          {{ currentDriversShifts.driverId }}
-        </div>
-        <div>
-          <label><strong>Shift:</strong></label>
-          {{ currentDriversShifts.shift }}
-        </div>
-        <div>
-          <label><strong>Added by:</strong></label>
-          {{ currentDriversShifts.user! | username  }}
-        </div>
-          <a class="badge badge-warning" routerLink="/schedule/{{ currentDriversShifts.id }}">
-            Change Shift
-          </a>
-      </div>
-      <div *ngIf="!currentDriversShifts">
-        <br/>
-        <p>Please click on a Shift...</p>
-      </div>
+
+            <th scope="row">{{ i + 1 }}</th>
+            <th>{{ driveShift.publiclinesId! | shiftLine | async }}</th>
+            <th>{{ driveShift.driverId! | shiftDriver | async }}</th>
+            <th>{{ driveShift.shift }}</th>
+            <th>
+              <a class="badge badge-info" routerLink="/scheduleread/{{ driveShift.id }}">
+                View
+              </a>
+            </th>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

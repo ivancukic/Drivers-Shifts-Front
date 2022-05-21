@@ -1,0 +1,31 @@
+<br>
+<div class="container-sm">
+  <div class="col-md-4">
+    <div *ngIf="currentDriver.id">
+      <h4>Driver</h4>
+      <div>
+        <label><strong>Name:</strong></label>
+        {{ currentDriver.name }}
+      </div>
+      <div>
+        <label><strong>Date Of Birth:</strong></label>
+        {{ currentDriver.dob }}
+      </div>
+      <div>
+        <label><strong>Category Of Driver:</strong></label>
+        {{ currentDriver.category! | categoryName }}
+      </div>
+      <div>
+        <label><strong>Active:</strong></label>
+        {{ currentDriver.active }}
+      </div>
+      <div>
+        <label><strong>Driver Added By:</strong></label>
+        {{ currentDriver.user! | username }}
+      </div>
+        <a class="badge badge-warning" routerLink="/drivers/{{ currentDriver.id }}">
+          Edit
+        </a>
+    </div>
+  </div>
+</div>

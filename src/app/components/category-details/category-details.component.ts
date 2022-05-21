@@ -11,6 +11,7 @@ import { CategoryService } from 'src/app/services/category.service';
 export class CategoryDetailsComponent implements OnInit {
 
   currentCategory: Category = {};
+  submitted = false;
 
   constructor(
     private categoryService: CategoryService,
@@ -40,6 +41,7 @@ export class CategoryDetailsComponent implements OnInit {
 
       response => {
         console.log(response);
+        this.submitted = true;
       },
       error => {
         console.log(error);

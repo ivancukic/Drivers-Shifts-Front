@@ -1,7 +1,7 @@
-<p>line-list works!</p>
+<br>
 <div class="container-sm">
   <div class="list row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <h4>Line List</h4>
 
       <br><br>
@@ -10,63 +10,39 @@
       </a>
       <br><br><br>
 
-      <ul class="list-group">
-        <li class="list-group-item"
-            *ngFor="let line of lines; let i = index"
-            [class.active] = "i == currentIndex"
-            (click) = "setActiveLine(line, i)"
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">LINE NAME</th>
+            <th scope="col">START TIME</th>
+            <th scope="col">END TIME</th>
+            <th scope="col">TOTAL TIME</th>
+            <th scope="col">NUMBER OF DRIVERS</th>
+            <th scope="col">VIEW</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let line of lines; let i = index"
+              [class.active] = "i == currentIndex"
+              (click) = "setActiveLine(line, i)"
           >
-          {{ line.id }}
-          {{ line.name_of_line }}
-          {{ line.start_time }}
-          {{ line.end_time }}
-          {{ line.total_time }}
-          {{ line.num_drivers }}
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <div *ngIf="currentLine.id">
-        <h4>Line</h4>
-        <div>
-          <label><strong>Name Of Line:</strong></label>
-          {{ currentLine.name_of_line }}
-        </div>
-        <div>
-          <label><strong>Start Time Of Line:</strong></label>
-          {{ currentLine.start_time }}
-        </div>
-        <div>
-          <label><strong>End Time Of Line:</strong></label>
-          {{ currentLine.end_time }}
-        </div>
-        <div>
-          <label><strong>Line Added By:</strong></label>
-          {{ currentLine.user! | username }}
-        </div>
-          <a class="badge badge-warning" routerLink="/lines/{{ currentLine.id }}">
-            Edit
-          </a>
-          <div *ngIf="currentLine.num_drivers === 1">
-            <a class="badge badge-success" routerLink="/shiftsaddone/{{ currentLine.id }}">
-              Add Drivers
-            </a>
-          </div>
-          <div *ngIf="currentLine.num_drivers === 2">
-            <a class="badge badge-success" routerLink="/shiftsaddtwo/{{ currentLine.id }}">
-              Add Drivers
-            </a>
-          </div>
-          <div *ngIf="currentLine.num_drivers === 3">
-            <a class="badge badge-success" routerLink="/shiftsaddthree/{{ currentLine.id }}">
-              Add Drivers
-            </a>
-          </div>
-      </div>
-      <div *ngIf="!currentLine">
-        <br/>
-        <p>Please click on a Line...</p>
-      </div>
+
+            <th scope="row">{{ line.id }}</th>
+            <th>{{ line.name_of_line }}</th>
+            <th>{{ line.start_time }}</th>
+            <th>{{ line.end_time }}</th>
+            <th>{{ line.total_time }}</th>
+            <th>{{ line.num_drivers }}</th>
+            <th>
+              <a class="badge badge-info" routerLink="/linesread/{{ line.id }}">
+                View
+              </a>
+            </th>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

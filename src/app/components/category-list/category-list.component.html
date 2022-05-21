@@ -1,5 +1,5 @@
+<br>
 <div class="container-sm">
-  <div class="list row">
     <div class="col-md-6">
       <h4>Category List</h4>
 
@@ -9,32 +9,29 @@
       </a>
       <br><br><br>
 
-      <ul class="list-group">
-        <li class="list-group-item"
-            *ngFor="let category of categories; let i = index"
-            [class.active] = "i == currentIndex"
-            (click) = "setActiveCategory(category, i)"
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">VIEW</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categories; let i = index"
+              [class.active] = "i == currentIndex"
+              (click) = "setActiveCategory(category, i)"
           >
-          {{ category.id }}
-          {{ category.name }}
-        </li>
-      </ul>
+
+            <th scope="row">{{ category.id }}</th>
+            <th>{{ category.name }}</th>
+            <th>
+              <a class="badge badge-info" routerLink="/categoryread/{{ category.id }}">
+                View
+              </a>
+            </th>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-md-6">
-      <div *ngIf="currentCategory.id">
-        <h4>Category</h4>
-        <div>
-          <label><strong>Name:</strong></label>
-          {{ currentCategory.name }}
-        </div>
-          <a class="badge badge-warning" routerLink="/category/{{ currentCategory.id }}">
-            Edit
-          </a>
-      </div>
-      <div *ngIf="!currentCategory">
-        <br/>
-        <p>Please click on a Category...</p>
-      </div>
-    </div>
-  </div>
 </div>

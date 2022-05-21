@@ -13,7 +13,7 @@ const API_URL = environment.BASE_URL + '/api/user';
 })
 export class UserService extends RequestBaseService {
 
-  private baseUrl = 'http://localhost:8080/api/driver';
+  private baseUrl = 'http://localhost:8080/api/user';
 
   constructor(authenticationService: AuthenticationService, http: HttpClient) {
 

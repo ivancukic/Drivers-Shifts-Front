@@ -8,16 +8,14 @@ import { CategoryService } from 'src/app/services/category.service';
 import { DriverService } from 'src/app/services/driver.service';
 
 @Component({
-  selector: 'app-driver-details',
-  templateUrl: './driver-details.component.html',
-  styleUrls: ['./driver-details.component.css']
+  selector: 'app-driver-read',
+  templateUrl: './driver-read.component.html',
+  styleUrls: ['./driver-read.component.css']
 })
-export class DriverDetailsComponent implements OnInit {
+export class DriverReadComponent implements OnInit {
 
   currentDriver: Driver = {};
-  categories: Category[] = [];
   currentUser: User = new User;
-  submitted = false;
 
   constructor(
     private driverService: DriverService,
@@ -33,7 +31,6 @@ export class DriverDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDriver(this.route.snapshot.params.id);
-    this.retriveCategories();
   }
 
   getDriver(id: string) {
@@ -41,47 +38,6 @@ export class DriverDetailsComponent implements OnInit {
     this.driverService.get(id).subscribe (
       data => {
         this.currentDriver = data;
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      });
-  }
-
-  updateDriver() {
-
-    this.driverService.updateDriver(this.currentDriver.id, this.currentDriver).subscribe (
-
-      response => {
-        console.log(response);
-        this.submitted = true;
-      },
-      error => {
-        console.log(error);
-      });
-  }
-
-  deleteDriver() {
-
-    this.driverService.deleteDriver(this.currentDriver.id).subscribe (
-
-      response => {
-
-        console.log(response);
-        this.router.navigate(['/drivers']);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  }
-
-  retriveCategories() {
-
-    this.categoryService.getCategoryList().subscribe (
-
-      data => {
-        this.categories = data;
         console.log(data);
       },
       error => {

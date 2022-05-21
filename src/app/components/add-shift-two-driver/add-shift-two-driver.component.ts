@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Driver } from 'src/app/models/driver';
@@ -17,6 +18,8 @@ export class AddShiftTwoDriverComponent implements OnInit {
   drivers: Driver[] = [];
   driverOneId: number = 0;
   driverTwoId: number = 0;
+  submitted = false;
+  validated = true;
 
   constructor(private shiftService: ShiftService,
     private driverService: DriverService,
@@ -44,9 +47,13 @@ export class AddShiftTwoDriverComponent implements OnInit {
 
       response => {
         console.log(response);
+        this.submitted = true;
       },
       error => {
         console.log(error);
+        if(error instanceof HttpErrorResponse) {
+          this.validated = false;
+        }
       });
   }
 

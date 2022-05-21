@@ -8,12 +8,16 @@ import { AddShiftThreeDriverComponent } from './components/add-shift-three-drive
 import { AddShiftTwoDriverComponent } from './components/add-shift-two-driver/add-shift-two-driver.component';
 import { CategoryDetailsComponent } from './components/category-details/category-details.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
+import { CategoryReadComponent } from './components/category-read/category-read.component';
 import { DriverDetailsComponent } from './components/driver-details/driver-details.component';
 import { DriverListComponent } from './components/driver-list/driver-list.component';
+import { DriverReadComponent } from './components/driver-read/driver-read.component';
 import { DriversShiftsDetailsComponent } from './components/drivers-shifts-details/drivers-shifts-details.component';
 import { DriversShiftsListComponent } from './components/drivers-shifts-list/drivers-shifts-list.component';
+import { DriversShiftsReadComponent } from './components/drivers-shifts-read/drivers-shifts-read.component';
 import { LineDetailsComponent } from './components/line-details/line-details.component';
 import { LineListComponent } from './components/line-list/line-list.component';
+import { LineReadComponent } from './components/line-read/line-read.component';
 import { AuthGuard } from './guards/auth.guard';
 import { Role } from './models/role.enum';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -51,31 +55,35 @@ const routes: Routes = [
 
   //CATEGORY START
   { path: 'category', component: CategoryListComponent },
-  { path: 'category/:id', component: CategoryDetailsComponent },
-  { path: 'categoryadd', component: AddCategoryComponent },
+  { path: 'categoryread/:id', component: CategoryReadComponent },
+  { path: 'category/:id', component: CategoryDetailsComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
+  { path: 'categoryadd', component: AddCategoryComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
   // CATEGORY END
 
   // LINE START
   { path: 'lines', component: LineListComponent },
-  { path: 'lines/:id', component: LineDetailsComponent },
-  { path: 'linesadd', component: AddLineComponent },
+  { path: 'linesread/:id', component: LineReadComponent },
+  { path: 'lines/:id', component: LineDetailsComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
+  { path: 'linesadd', component: AddLineComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
   // LINE END
 
   // SHIFT START
-  { path: 'shiftsaddone/:id', component: AddShiftOneDriverComponent },
-  { path: 'shiftsaddtwo/:id', component: AddShiftTwoDriverComponent },
-  { path: 'shiftsaddthree/:id', component: AddShiftThreeDriverComponent },
+  { path: 'shiftsaddone/:id', component: AddShiftOneDriverComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
+  { path: 'shiftsaddtwo/:id', component: AddShiftTwoDriverComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
+  { path: 'shiftsaddthree/:id', component: AddShiftThreeDriverComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
   // SHIFT END
 
   // DRIVERS-SHIFTS START
   { path: 'schedule', component: DriversShiftsListComponent },
-  { path: 'schedule/:id', component: DriversShiftsDetailsComponent },
+  { path: 'scheduleread/:id', component: DriversShiftsReadComponent },
+  { path: 'schedule/:id', component: DriversShiftsDetailsComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
   // DRIVERS-SHIFTS END
 
   // DRIVER START
   { path: 'drivers', component: DriverListComponent },
-  { path: 'drivers/:id', component: DriverDetailsComponent },
-  { path: 'driversadd', component: AddDriverComponent }
+  { path: 'driversread/:id', component: DriverReadComponent },
+  { path: 'drivers/:id', component: DriverDetailsComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} },
+  { path: 'driversadd', component: AddDriverComponent, canActivate:[AuthGuard], data: {roles: [Role.ADMIN]} }
   // DRIVER END
 
 ];

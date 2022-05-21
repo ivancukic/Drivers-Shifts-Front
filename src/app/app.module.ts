@@ -31,7 +31,11 @@ import { ActiveDriverPipe } from './pipes/active-driver.pipe';
 import { DriversShiftsListComponent } from './components/drivers-shifts-list/drivers-shifts-list.component';
 import { DriversShiftsDetailsComponent } from './components/drivers-shifts-details/drivers-shifts-details.component';
 import { ShiftLinePipe } from './pipes/shift-line.pipe';
-import { LineNamePipe } from './pipes/line-name.pipe';
+import { ShiftDriverPipe } from './pipes/shift-driver.pipe';
+import { CategoryReadComponent } from './components/category-read/category-read.component';
+import { LineReadComponent } from './components/line-read/line-read.component';
+import { DriversShiftsReadComponent } from './components/drivers-shifts-read/drivers-shifts-read.component';
+import { DriverReadComponent } from './components/driver-read/driver-read.component';
 
 
 @NgModule({
@@ -62,7 +66,11 @@ import { LineNamePipe } from './pipes/line-name.pipe';
     DriversShiftsListComponent,
     DriversShiftsDetailsComponent,
     ShiftLinePipe,
-    LineNamePipe,
+    ShiftDriverPipe,
+    CategoryReadComponent,
+    LineReadComponent,
+    DriversShiftsReadComponent,
+    DriverReadComponent,
 
 
   ],

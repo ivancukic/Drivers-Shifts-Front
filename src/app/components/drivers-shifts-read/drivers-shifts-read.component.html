@@ -1,0 +1,28 @@
+<br>
+<div class="container-sm">
+  <div class="col-md-4">
+    <div *ngIf="currentDriversShifts.id">
+      <h4>Shift</h4>
+      <br>
+      <div>
+        <label><strong>Line:</strong></label>
+        {{ currentDriversShifts.publiclinesId! | shiftLine | async }}
+      </div>
+      <div>
+        <label><strong>Driver:</strong></label>
+        {{ currentDriversShifts.driverId! | shiftDriver | async }}
+      </div>
+      <div>
+        <label><strong>Shift:</strong></label>
+        {{ currentDriversShifts.shift }}
+      </div>
+      <div>
+        <label><strong>Added by:</strong></label>
+        {{ currentDriversShifts.user! | username  }}
+      </div>
+        <a class="badge badge-warning" routerLink="/schedule/{{ currentDriversShifts.id }}">
+          Change Shift
+        </a>
+    </div>
+  </div>
+</div>

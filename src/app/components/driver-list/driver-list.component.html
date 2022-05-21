@@ -1,60 +1,46 @@
-<p>driver-list works!</p>
+<br>
 <div class="container-sm">
   <div class="list row">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <h4>Driver List</h4>
 
       <br><br>
+
       <a class="badge badge-secondary" routerLink="/driversadd">
         Add Driver
       </a>
+
       <br><br><br>
 
-      <ul class="list-group">
-        <li class="list-group-item"
-            *ngFor="let drive of drivers; let i = index"
-            [class.active] = "i == currentIndex"
-            (click) = "setActiveDriver(drive, i)"
-          >
-          {{ drive.id }}
-          {{ drive.name }}
-          {{ drive.dob }}
-          {{ drive.category! | categoryName }}
-          {{ drive.active }}
-        </li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <div *ngIf="currentDriver.id">
-        <h4>Driver</h4>
-        <div>
-          <label><strong>Name:</strong></label>
-          {{ currentDriver.name }}
-        </div>
-        <div>
-          <label><strong>Date Of Birth:</strong></label>
-          {{ currentDriver.dob }}
-        </div>
-        <div>
-          <label><strong>Category Of Driver:</strong></label>
-          {{ currentDriver.category! | categoryName }}
-        </div>
-        <div>
-          <label><strong>Active:</strong></label>
-          {{ currentDriver.active }}
-        </div>
-        <div>
-          <label><strong>Driver Added By:</strong></label>
-          {{ currentDriver.user! | username }}
-        </div>
-          <a class="badge badge-warning" routerLink="/drivers/{{ currentDriver.id }}">
-            Edit
-          </a>
-      </div>
-      <div *ngIf="!currentDriver">
-        <br/>
-        <p>Please click on a Driver ...</p>
-      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">NAME</th>
+            <th scope="col">DOB</th>
+            <th scope="col">CATEGORY</th>
+            <th scope="col">ACTIVE</th>
+            <th scope="col">VIEW</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let drive of drivers; let i = index"
+              [class.active] = "i == currentIndex"
+              (click) = "setActiveDriver(drive, i)">
+
+            <th scope="row">{{ drive.id }}</th>
+            <th>{{ drive.name }}</th>
+            <th>{{ drive.dob }}</th>
+            <th>{{ drive.category! | categoryName }}</th>
+            <th>{{ drive.active }}</th>
+            <th>
+              <a class="badge badge-info" routerLink="/driversread/{{ drive.id }}">
+                View
+              </a>
+            </th>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

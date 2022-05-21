@@ -1,4 +1,4 @@
-<p>add-driver works!</p>
+<br>
 <div class="container-sm">
   <div class="submit-form">
     <div *ngIf="!submitted">
@@ -13,7 +13,7 @@
         <label for="category">Category Of Driver</label>
         <br>
         <select [(ngModel)]="driver.category">
-          <option *ngFor="let cat of categories" value="{{ cat.id }}">{{ cat.name }}</option>
+          <option *ngFor="let cat of categories" [ngValue]="cat" >{{ cat.name }}</option>
         </select>
 
          <input type="hidden" [(ngModel)]="driver.user" value="{{ currentUser }}" [ngModelOptions]="{standalone: true}">
@@ -21,8 +21,10 @@
 
         <br><br><br>
 
+      </div>
       <button (click)="saveDriver()" class="btn btn-success">Save Driver</button>
     </div>
+
     <div *ngIf="submitted">
       <h4>Driver was saved successfully!</h4>
     </div>

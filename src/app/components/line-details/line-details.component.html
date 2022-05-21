@@ -1,31 +1,36 @@
-<p>line-details works!</p>
+<br>
 <div class="container-sm">
   <div *ngIf="currentLine.id" class="edit-form">
-    <h4>Line</h4>
-    <form>
-      <div class="form-group">
-        <label for="name_of_line">Name Of Line</label>
-        <input type="text" class="form-control" id="name_of_line"
-               [(ngModel)]="currentLine.name_of_line" name="name_of_line" />
-      </div>
-      <div class="form-group">
-        <label for="start_time">Start Time Of Line</label>
-        <input type="time" class="form-control" id="start_time"
-               [(ngModel)]="currentLine.start_time" name="start_time" />
-      </div>
-      <div class="form-group">
-        <label for="end_time">End Time Of Line</label>
-        <input type="time" class="form-control" id="end_time"
-               [(ngModel)]="currentLine.end_time" name="end_time" />
-      </div>
-      <input type="hidden" [(ngModel)]="currentLine.user" value="{{ currentUser }}" [ngModelOptions]="{standalone: true}">
-    </form>
-    <button class="badge badge-danger mr-2" (click)="deleteLine()">
-      Delete
-    </button>
-    <button class="badge badge-succerss mb-2" (click)="updateLine()">
-      Update
-    </button>
+    <div *ngIf="!submitted">
+      <h4>Line</h4>
+      <form>
+        <div class="form-group">
+          <label for="name_of_line">Name Of Line</label>
+          <input type="text" class="form-control" id="name_of_line"
+                [(ngModel)]="currentLine.name_of_line" name="name_of_line" />
+        </div>
+        <div class="form-group">
+          <label for="start_time">Start Time Of Line</label>
+          <input type="time" class="form-control" id="start_time"
+                [(ngModel)]="currentLine.start_time" name="start_time" />
+        </div>
+        <div class="form-group">
+          <label for="end_time">End Time Of Line</label>
+          <input type="time" class="form-control" id="end_time"
+                [(ngModel)]="currentLine.end_time" name="end_time" />
+        </div>
+        <input type="hidden" [(ngModel)]="currentLine.user" value="{{ currentUser }}" [ngModelOptions]="{standalone: true}">
+      </form>
+      <button class="badge badge-danger mr-2" (click)="deleteLine()">
+        Delete
+      </button>
+      <button class="badge badge-succerss mb-2" (click)="updateLine()">
+        Update
+      </button>
+    </div>
+    <div *ngIf="submitted">
+      <h4>Line was updated successfully!</h4>
+    </div>
   </div>
   <div *ngIf="!currentLine.id">
     <br/>

@@ -26,9 +26,17 @@ export class AppComponent {
     return this.currentUser?.role === Role.ADMIN;
   }
 
+  isUser() {
+
+    return this.currentUser?.role === Role.USER;
+  }
+
+
   logOut() {
 
     this.authenticationService.logOut();
+    window.location.reload();
     this.router.navigate(['/login']);
   }
+
 }

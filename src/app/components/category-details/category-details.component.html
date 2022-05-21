@@ -1,19 +1,25 @@
+<br>
 <div class="container-sm">
   <div *ngIf="currentCategory.id" class="edit-form">
-    <h4>Category</h4>
-    <form>
-      <div class="form-group">
-        <label for="name">Name Of Category</label>
-        <input type="text" class="form-control" id="name"
-               [(ngModel)]="currentCategory.name" name="name" />
-      </div>
-    </form>
-    <button class="badge badge-danger mr-2" (click)="deleteCategory()">
-      Delete
-    </button>
-    <button class="badge badge-succerss mb-2" (click)="updateCategory()">
-      Update
-    </button>
+    <div *ngIf="!submitted">
+      <h4>Category</h4>
+      <form>
+        <div class="form-group">
+          <label for="name">Name Of Category</label>
+          <input type="text" class="form-control" id="name"
+                [(ngModel)]="currentCategory.name" name="name" />
+        </div>
+      </form>
+      <button class="badge badge-danger mr-2" (click)="deleteCategory()">
+        Delete
+      </button>
+      <button class="badge badge-succerss mb-2" (click)="updateCategory()">
+        Update
+      </button>
+    </div>
+    <div *ngIf="submitted">
+      <h4>Category was updated successfully!</h4>
+    </div>
   </div>
   <div *ngIf="!currentCategory.id">
     <br/>

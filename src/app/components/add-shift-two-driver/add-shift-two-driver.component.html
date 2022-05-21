@@ -1,29 +1,39 @@
-<p>add-shift-two-driver works!</p>
+<br>
 <div class="container-sm">
   <div *ngIf="currentShift.id" class="edit-form">
-    <h4>Shifts</h4>
-    <form>
-      <div class="form-group">
-        <label for="driverOneId">First Driver</label>
+    <div *ngIf="validated">
+      <div *ngIf="!submitted">
+        <h4>Shifts</h4>
+        <form>
+          <div class="form-group">
+            <label for="driverOneId">First Driver</label>
+            <br>
+            <select [(ngModel)]="driverOneId" name="driverOneId">
+              <option *ngFor="let driver of drivers | activeDriver" value="{{ driver.id }}" >
+                {{ driver.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="driverTwoId">Second Driver</label>
+            <br>
+            <select [(ngModel)]="driverTwoId" name="driverTwoId">
+              <option *ngFor="let driver of drivers | activeDriver" value="{{ driver.id }}">{{ driver.name }}</option>
+            </select>
+          </div>
+        </form>
         <br>
-        <select [(ngModel)]="driverOneId" name="driverOneId">
-          <option *ngFor="let driver of drivers | activeDriver" value="{{ driver.id }}" >
-            {{ driver.name }}
-          </option>
-        </select>
+        <button class="badge badge-succerss mb-2" (click)="updateShift()">
+          Add/Update
+        </button>
       </div>
-      <div class="form-group">
-        <label for="driverTwoId">Second Driver</label>
-        <br>
-        <select [(ngModel)]="driverTwoId" name="driverTwoId">
-          <option *ngFor="let driver of drivers | activeDriver" value="{{ driver.id }}">{{ driver.name }}</option>
-        </select>
+      <div *ngIf="submitted">
+        <h4>Line with two drivers was saved successfully!</h4>
       </div>
-    </form>
-    <br>
-    <button class="badge badge-succerss mb-2" (click)="updateShift()">
-      Add/Update
-    </button>
+    </div>
+    <div *ngIf="!validated">
+        <h4>Wrong input of drivers! Please check if you have'nt entered driver in input field or put one driver in two shifts!</h4>
+    </div>
   </div>
   <div *ngIf="!currentShift.id">
     <br/>

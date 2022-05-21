@@ -6,16 +6,14 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LineService } from 'src/app/services/line.service';
 
 @Component({
-  selector: 'app-line-details',
-  templateUrl: './line-details.component.html',
-  styleUrls: ['./line-details.component.css']
+  selector: 'app-line-read',
+  templateUrl: './line-read.component.html',
+  styleUrls: ['./line-read.component.css']
 })
-export class LineDetailsComponent implements OnInit {
+export class LineReadComponent implements OnInit {
 
   currentLine: Line = {};
   currentUser: User = new User;
-  submitted = false;
-
 
   constructor(
     private lineService: LineService,
@@ -44,31 +42,5 @@ export class LineDetailsComponent implements OnInit {
       });
   }
 
-  updateLine() {
-
-    this.lineService.updateLine(this.currentLine.id, this.currentLine).subscribe (
-
-      response => {
-        console.log(response);
-        this.submitted = true;
-      },
-      error => {
-        console.log(error);
-      });
-  }
-
-  deleteLine() {
-
-    this.lineService.deleteLine(this.currentLine.id).subscribe (
-
-      response => {
-
-        console.log(response);
-        this.router.navigate(['/lines']);
-      },
-      error => {
-        console.log(error);
-      });
-  }
 
 }

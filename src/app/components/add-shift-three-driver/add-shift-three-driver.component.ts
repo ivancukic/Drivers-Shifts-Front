@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Driver } from 'src/app/models/driver';
@@ -20,7 +21,9 @@ export class AddShiftThreeDriverComponent implements OnInit {
   driverOneId: number = 0;
   driverTwoId: number = 0;
   driverThreeId: number = 0;
-  currentUser: User = new User; // MISLIM DA MI NE TREBA
+  currentUser: User = new User;
+  submitted = false;
+  validated = true;
 
   constructor(
     private shiftService: ShiftService,
@@ -54,18 +57,14 @@ export class AddShiftThreeDriverComponent implements OnInit {
     this.shiftService.updateShiftThree(this.currentShift.id, this.currentShift, this.driverOneId, this.driverTwoId, this.driverThreeId).subscribe (
 
       response => {
-        console.log("Line id je " + this.currentShift.id);
-        console.log("DriverOneId je " + this.driverOneId);
-        console.log("DriverTwoId je " + this.driverTwoId);
-        console.log("DriverThreeId je " + this.driverThreeId);
         console.log(response);
+        this.submitted = true;
       },
       error => {
-        console.log("Line id je " + this.currentShift.id);
-        console.log("DriverOneId je " + this.driverOneId);
-        console.log("DriverTwoId je " + this.driverTwoId);
-        console.log("DriverThreeId je " + this.driverThreeId);
         console.log(error);
+        if(error instanceof HttpErrorResponse) {
+          this.validated = false;
+        }
       });
   }
 

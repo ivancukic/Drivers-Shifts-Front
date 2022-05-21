@@ -7,6 +7,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DriversShiftsService } from 'src/app/services/drivers-shifts.service';
 import { Shift } from 'src/app/models/shift.enum';
 import { Line } from 'src/app/models/line';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DriverService } from 'src/app/services/driver.service';
 
 @Component({
   selector: 'app-drivers-shifts-details',
@@ -16,13 +18,17 @@ import { Line } from 'src/app/models/line';
 export class DriversShiftsDetailsComponent implements OnInit {
 
   currentDriver: Driver = {};
+  drivers: Driver[] = [];
   currentLine: Line = {};
   currentUser: User = new User;
   currentDriversShifts: DriversShifts = {};
   currentShift = Shift;
   shifts = Object.values(Shift);
+  submitted = false;
+  validated = true;
 
   constructor(
+    private driverService: DriverService,
     private route: ActivatedRoute,
     private driversShiftsService: DriversShiftsService,
     private authenticationService: AuthenticationService
@@ -34,6 +40,7 @@ export class DriversShiftsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDriversShifts(this.route.snapshot.params.id);
+    this.retriveDrivers();
   }
 
   getDriversShifts(id: string) {
@@ -54,6 +61,24 @@ export class DriversShiftsDetailsComponent implements OnInit {
 
       response => {
         console.log(response);
+        this.submitted = true;
+      },
+      error => {
+        console.log(error);
+        if(error instanceof HttpErrorResponse) {
+          this.validated = false;
+        }
+      });
+  }
+
+  retriveDrivers() {
+
+    this.driverService.getDriverList().subscribe (
+
+
+      data => {
+        this.drivers = data;
+        console.log(data);
       },
       error => {
         console.log(error);

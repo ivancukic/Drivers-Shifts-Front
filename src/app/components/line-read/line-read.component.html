@@ -1,0 +1,46 @@
+<br>
+<div class="container-sm">
+  <div class="col-md-4">
+    <div *ngIf="currentLine.id">
+      <h4>Line</h4>
+      <div>
+        <label><strong>Name Of Line:</strong></label>
+        {{ currentLine.name_of_line }}
+      </div>
+      <div>
+        <label><strong>Start Time Of Line:</strong></label>
+        {{ currentLine.start_time }}
+      </div>
+      <div>
+        <label><strong>End Time Of Line:</strong></label>
+        {{ currentLine.end_time }}
+      </div>
+      <div>
+        <label><strong>Line Added By:</strong></label>
+        {{ currentLine.user! | username }}
+      </div>
+        <a class="badge badge-warning" routerLink="/lines/{{ currentLine.id }}">
+          Edit
+        </a>
+        <div *ngIf="currentLine.num_drivers === 1">
+          <a class="badge badge-success" routerLink="/shiftsaddone/{{ currentLine.id }}">
+            Add Drivers
+          </a>
+        </div>
+        <div *ngIf="currentLine.num_drivers === 2">
+          <a class="badge badge-success" routerLink="/shiftsaddtwo/{{ currentLine.id }}">
+            Add Drivers
+          </a>
+        </div>
+        <div *ngIf="currentLine.num_drivers === 3">
+          <a class="badge badge-success" routerLink="/shiftsaddthree/{{ currentLine.id }}">
+            Add Drivers
+          </a>
+        </div>
+    </div>
+    <div *ngIf="!currentLine">
+      <br/>
+      <p>Please click on a Line...</p>
+    </div>
+  </div>
+</div>

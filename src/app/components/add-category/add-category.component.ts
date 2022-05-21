@@ -9,8 +9,6 @@ import { CategoryService } from 'src/app/services/category.service';
 })
 export class AddCategoryComponent implements OnInit {
 
-//  @Input() category!: Category; // JA SAM DODAO !
-//  @Output() categorySaved: EventEmitter<Category> = new EventEmitter();
   submitted = false;
   category: Category = {};
 
@@ -18,19 +16,6 @@ export class AddCategoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-//  saveCategory() {
-
-//    this.categoryService.addCategory(this.category).subscribe(
-//      response => {
-//        console.log('Category saved', response);
-//        this.categorySaved.emit(response);
-//        this.submitted = true;
-//      },
-//      error => {
-//        console.log(error);
-//      });
-//  }
 
   saveCategory() {
 

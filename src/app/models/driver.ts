@@ -9,8 +9,6 @@ export interface Driver {
   dob?: Date;
   category?: Category;
   user?: User;
-  lines?: Line[]; // MISLIM DA MI OVO NE TREBA
-  //selectedCategory?: number;
   active?: Boolean;
 
 

@@ -1,0 +1,19 @@
+<br>
+<div class="container-sm">
+  <div *ngIf="currentCategory.id" class="edit-form">
+      <h4>Category</h4>
+      <form>
+        <div class="form-group">
+          <label for="name">Name Of Category</label>
+          <p type="text">{{ currentCategory.name }}</p>
+        </div>
+      </form>
+      <a class="badge badge-warning" routerLink="/category/{{ currentCategory.id }}">
+        Edit
+      </a>
+  </div>
+  <div *ngIf="!currentCategory.id">
+    <br/>
+    <p>Cannot access this Category...</p>
+  </div>
+</div>
